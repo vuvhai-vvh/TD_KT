@@ -1,0 +1,323 @@
+<UserControl x:Class="TD_KT.Views.HomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <!-- ==================== STYLE CHUNG ==================== -->
+
+        <!-- Card Container Style -->
+        <Style x:Key="CardStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E5E7EB"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Margin" Value="0,0,0,16"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="8" ShadowDepth="2" Opacity="0.08" Color="#000000"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Card Title Style -->
+        <Style x:Key="CardTitleStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#1F2937"/>
+            <Setter Property="Margin" Value="0,0,0,12"/>
+        </Style>
+
+        <!-- Card Title with Icon -->
+        <Style x:Key="CardTitleWithIconStyle" TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="Margin" Value="0,0,0,16"/>
+        </Style>
+
+        <!-- Title Number Badge -->
+        <Style x:Key="TitleBadgeStyle" TargetType="Border">
+            <Setter Property="Background" Value="#3B82F6"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="Padding" Value="10,6"/>
+            <Setter Property="Margin" Value="0,0,12,0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <!-- ==================== DATAGRID STYLES ==================== -->
+
+        <!-- DataGrid Style -->
+        <Style x:Key="ModernDataGridStyle" TargetType="DataGrid">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E5E7EB"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="RowBackground" Value="White"/>
+            <Setter Property="AlternatingRowBackground" Value="#F9FAFB"/>
+            <Setter Property="GridLinesVisibility" Value="Horizontal"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="#F3F4F6"/>
+            <Setter Property="VerticalGridLinesBrush" Value="#F3F4F6"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="SelectionMode" Value="Single"/>
+            <Setter Property="SelectionUnit" Value="FullRow"/>
+            <Setter Property="CanUserResizeRows" Value="False"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="RowHeight" Value="42"/>
+        </Style>
+
+        <!-- DataGrid Column Header Style -->
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="#F8FAFC"/>
+            <Setter Property="Foreground" Value="#64748B"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Padding" Value="12,10"/>
+            <Setter Property="BorderBrush" Value="#E2E8F0"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        </Style>
+
+        <!-- DataGrid Cell Style -->
+        <Style TargetType="DataGridCell">
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="DataGridCell">
+                        <Border Background="{TemplateBinding Background}" 
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#EFF6FF"/>
+                    <Setter Property="Foreground" Value="#1E40AF"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- DataGrid Row Style -->
+        <Style TargetType="DataGridRow">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Margin" Value="0"/>
+            <Style.Triggers>
+                <Trigger Property="AlternationIndex" Value="1">
+                    <Setter Property="Background" Value="#F9FAFB"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#F1F5F9"/>
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#EFF6FF"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Info Banner Style -->
+        <Style x:Key="InfoBannerStyle" TargetType="Border">
+            <Setter Property="Background" Value="#EFF6FF"/>
+            <Setter Property="BorderBrush" Value="#BFDBFE"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="16,12"/>
+            <Setter Property="Margin" Value="0,0,0,20"/>
+        </Style>
+
+    </UserControl.Resources>
+
+    <Grid Background="#F8FAFC">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" 
+                      HorizontalScrollBarVisibility="Disabled"
+                      Padding="24,20">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,12">
+                    <Button Content="&#x21bb; Làm mới"
+                            Padding="14,8"
+                            FontSize="12"
+                            FontWeight="SemiBold"
+                            Foreground="White"
+                            Background="#2563EB"
+                            BorderBrush="#1D4ED8"
+                            BorderThickness="1"
+                            Cursor="Hand"
+                            Click="RefreshButton_Click"/>
+                </StackPanel>
+                <!-- ==================== KHỐI 1: CHỨC NĂNG, NHIỆM VỤ ==================== -->
+                <Border Style="{StaticResource CardStyle}">
+                    <StackPanel>
+                        <!-- Title with badge -->
+                        <StackPanel Style="{StaticResource CardTitleWithIconStyle}">
+                            <Border Style="{StaticResource TitleBadgeStyle}">
+                                <TextBlock Text="1" Foreground="White" FontWeight="Bold" FontSize="13"/>
+                            </Border>
+                            <TextBlock Text="Chức năng, nhiệm vụ và quyền hạn của Hội đồng thi đua"
+                                       FontSize="15"
+                                       FontWeight="SemiBold"
+                                       Foreground="#1F2937"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <!-- Content -->
+                        <Border Background="#F9FAFB" CornerRadius="8" Padding="16">
+                            <TextBlock Text="{Binding CouncilFunctions}" 
+                                       TextWrapping="Wrap" 
+                                       Foreground="#4B5563"
+                                       FontSize="13"
+                                       LineHeight="22"/>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <!-- ==================== KHỐI 2: DANH SÁCH HỘI ĐỒNG THI ĐUA ==================== -->
+                <Border Style="{StaticResource CardStyle}">
+                    <StackPanel>
+                        <!-- Title with badge -->
+                        <StackPanel Style="{StaticResource CardTitleWithIconStyle}">
+                            <Border Style="{StaticResource TitleBadgeStyle}">
+                                <TextBlock Text="2" Foreground="White" FontWeight="Bold" FontSize="13"/>
+                            </Border>
+                            <TextBlock Text="Danh sách Hội đồng thi đua"
+                                       FontSize="15"
+                                       FontWeight="SemiBold"
+                                       Foreground="#1F2937"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <!-- DataGrid with border -->
+                        <Border BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="8" ClipToBounds="True">
+                            <DataGrid ItemsSource="{Binding CouncilMembers}"
+                                      Style="{StaticResource ModernDataGridStyle}"
+                                      MaxHeight="280"
+                                      AlternationCount="2">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="STT" Width="60" Binding="{Binding Stt}">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                <Setter Property="Foreground" Value="#6B7280"/>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Họ tên" Width="200" Binding="{Binding FullName}">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="FontWeight" Value="Medium"/>
+                                                <Setter Property="Foreground" Value="#1F2937"/>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Cấp bậc" Width="120" Binding="{Binding Rank}">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Foreground" Value="#4B5563"/>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Chức vụ" Width="200" Binding="{Binding Position}">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Foreground" Value="#4B5563"/>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Vai trò trong HĐ" Width="*" Binding="{Binding Role}">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Foreground" Value="#3B82F6"/>
+                                                <Setter Property="FontWeight" Value="Medium"/>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Border>
+
+                        <!-- Footer info -->
+                        <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
+                            <TextBlock Text="Tổng số: " Foreground="#6B7280" FontSize="12"/>
+                            <TextBlock Text="{Binding CouncilMembers.Count, FallbackValue=0}" 
+                                       Foreground="#1F2937" FontWeight="SemiBold" FontSize="12"/>
+                            <TextBlock Text=" thành viên" Foreground="#6B7280" FontSize="12"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- ==================== KHỐI 3: DANH SÁCH TỔ THI ĐUA ==================== -->
+                <Border Style="{StaticResource CardStyle}">
+                    <StackPanel>
+                        <!-- Title with badge -->
+                        <StackPanel Style="{StaticResource CardTitleWithIconStyle}">
+                            <Border Style="{StaticResource TitleBadgeStyle}">
+                                <TextBlock Text="3" Foreground="White" FontWeight="Bold" FontSize="13"/>
+                            </Border>
+                            <TextBlock Text="Danh sách Tổ thi đua các cơ quan/đơn vị"
+                                       FontSize="15"
+                                       FontWeight="SemiBold"
+                                       Foreground="#1F2937"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <!-- DataGrid with border -->
+                        <Border BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="8" ClipToBounds="True">
+                            <DataGrid ItemsSource="{Binding EmulationTeams}"
+                                      Style="{StaticResource ModernDataGridStyle}"
+                                      MaxHeight="280"
+                                      AlternationCount="2">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="STT" Width="60" Binding="{Binding Stt}">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                <Setter Property="Foreground" Value="#6B7280"/>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Tên tổ thi đua" Width="220" Binding="{Binding TeamName}">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="FontWeight" Value="Medium"/>
+                                                <Setter Property="Foreground" Value="#1F2937"/>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Tổ trưởng" Width="180" Binding="{Binding Leader}">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Foreground" Value="#4B5563"/>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Đơn vị thành viên" Width="*" Binding="{Binding Members}">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Foreground" Value="#4B5563"/>
+                                                <Setter Property="TextWrapping" Value="Wrap"/>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Border>
+
+                        <!-- Footer info -->
+                        <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
+                            <TextBlock Text="Tổng số: " Foreground="#6B7280" FontSize="12"/>
+                            <TextBlock Text="{Binding EmulationTeams.Count, FallbackValue=0}" 
+                                       Foreground="#1F2937" FontWeight="SemiBold" FontSize="12"/>
+                            <TextBlock Text=" tổ thi đua" Foreground="#6B7280" FontSize="12"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

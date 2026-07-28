@@ -1,0 +1,398 @@
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <LangVersion>9</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{144670CB-6396-488C-A76D-2E03A3B69E78}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TD_KT</RootNamespace>
+    <AssemblyName>TD_KT</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ApplicationIcon>Images\logo.png</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Win32Resource>
+    </Win32Resource>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <ItemGroup>
+    <Reference Include="DevExpress.Mvvm.v24.1" />
+    <Reference Include="DevExpress.Data.Desktop.v24.1" />
+    <Reference Include="DevExpress.Data.v24.1" />
+    <Reference Include="DevExpress.Printing.v24.1.Core" />
+    <Reference Include="DevExpress.Xpf.Core.v24.1" />
+    <Reference Include="DevExpress.Drawing.v24.1" />
+    <Reference Include="DevExpress.Images.v24.1" />
+    <Reference Include="DevExpress.Xpf.ThemesLW.v24.1" />
+    <Reference Include="DocumentFormat.OpenXml, Version=3.4.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.3.4.1\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml.Framework, Version=3.4.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.Framework.3.4.1\lib\net46\DocumentFormat.OpenXml.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Data\DecisionAttachmentData.cs" />
+    <Compile Include="Data\DecisionData.cs" />
+    <Compile Include="Data\DocumentProposalData.cs" />
+    <Compile Include="Data\IntroConfigData.cs" />
+    <Compile Include="Data\IssuingLevelData.cs" />
+    <Compile Include="Data\LocationData.cs" />
+    <Compile Include="Data\MedalRecordData.cs" />
+    <Compile Include="Data\OrgUnitData.cs" />
+    <Compile Include="Data\PositionData.cs" />
+    <Compile Include="Data\RankData.cs" />
+    <Compile Include="Data\RewardFormData.cs" />
+    <Compile Include="Data\RewardReportData.cs" />
+    <Compile Include="Data\SeniorityAwardData.cs" />
+    <Compile Include="Data\TitleProposalData.cs" />
+    <Compile Include="Data\SoldierData.cs" />
+    <Compile Include="Data\SqlDb.cs" />
+    <Compile Include="Data\UnitDocumentProposalData.cs" />
+    <Compile Include="Data\UnitScoreSummaryData.cs" />
+    <Compile Include="Data\UserData.cs" />
+    <Compile Include="Data\UserPermissionData.cs" />
+    <Compile Include="Data\WeekLockData.cs" />
+    <Compile Include="Data\WeeklyScoreData.cs" />
+    <Compile Include="Models\UpdateManifest.cs" />
+    <Compile Include="Models\Database.cs" />
+    <Compile Include="Models\Decision.cs" />
+    <Compile Include="Models\DecisionAttachment.cs" />
+    <Compile Include="Models\DecisionDetail.cs" />
+    <Compile Include="Models\DocumentProposal.cs" />
+    <Compile Include="Models\IntroConfig.cs" />
+    <Compile Include="Models\IssuingLevel.cs" />
+    <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\MedalRecord.cs" />
+    <Compile Include="Models\OrgUnit.cs" />
+    <Compile Include="Models\Position.cs" />
+    <Compile Include="Models\Rank.cs" />
+    <Compile Include="Models\RewardForm.cs" />
+    <Compile Include="Models\RewardHistory.cs" />
+    <Compile Include="Models\RewardReportSnapshot.cs" />
+    <Compile Include="Models\SeniorityAward.cs" />
+    <Compile Include="Models\Soldier.cs" />
+    <Compile Include="Models\sysdiagram.cs" />
+    <Compile Include="Models\TitleProposal.cs" />
+    <Compile Include="Models\UnitDocumentProposal.cs" />
+    <Compile Include="Models\UnitScoreSummary.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserPermission.cs" />
+    <Compile Include="Models\WeeklyScore.cs" />
+    <Compile Include="Services\AppInfo.cs" />
+    <Compile Include="Services\AutoUpdateService.cs" />
+    <Compile Include="Services\AppSession.cs" />
+    <Compile Include="Services\ConnectionStringProvider.cs" />
+    <Compile Include="Services\DialogService.cs" />
+    <Compile Include="Services\FileDialogService.cs" />
+    <Compile Include="Services\FileStorageService.cs" />
+    <Compile Include="Services\HometownPickerService.cs" />
+    <Compile Include="Services\IConnectionStringProvider.cs" />
+    <Compile Include="Services\IDialogService.cs" />
+    <Compile Include="Services\IFileDialogService.cs" />
+    <Compile Include="Services\IFileStorageService.cs" />
+    <Compile Include="Services\IHometownPickerService.cs" />
+    <Compile Include="Services\IMessageService.cs" />
+    <Compile Include="Services\MessageService.cs" />
+    <Compile Include="Services\PasswordHasherService.cs" />
+    <Compile Include="Services\WeekCalculator.cs" />
+    <Compile Include="Services\WordDocxExportService.cs" />
+    <Compile Include="ViewModels\AddEditRewardDialogViewModel.cs" />
+    <Compile Include="ViewModels\AdminViewModel.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\CatalogViewModel.cs" />
+    <Compile Include="ViewModels\DecisionAttachmentDisplay.cs" />
+    <Compile Include="ViewModels\DecisionDetailDisplay.cs" />
+    <Compile Include="ViewModels\DecisionViewModels.cs" />
+    <Compile Include="ViewModels\DocumentProposalDisplayModel.cs" />
+    <Compile Include="ViewModels\DocumentProposalViewModel.cs" />
+    <Compile Include="ViewModels\FilterOption.cs" />
+    <Compile Include="ViewModels\HometownViewModel.cs" />
+    <Compile Include="ViewModels\IntroConfigViewModel.cs" />
+    <Compile Include="ViewModels\IssuingLevelViewModel.cs" />
+    <Compile Include="ViewModels\MedalRecordRow.cs" />
+    <Compile Include="ViewModels\OrgUnitViewModel.cs" />
+    <Compile Include="ViewModels\PermissionViewModel.cs" />
+    <Compile Include="ViewModels\PositionViewModel.cs" />
+    <Compile Include="ViewModels\RelayCommand.cs" />
+    <Compile Include="ViewModels\ReportStatisticViewModel.cs" />
+    <Compile Include="ViewModels\RewardFormViewModel.cs" />
+    <Compile Include="ViewModels\RewardReportRow.cs" />
+    <Compile Include="ViewModels\SoldierDisplayModel.cs" />
+    <Compile Include="ViewModels\UnitDocumentProposalDisplayModel.cs" />
+    <Compile Include="ViewModels\UnitDocumentProposalViewModel.cs" />
+    <Compile Include="ViewModels\UserDisplayModel.cs" />
+    <Compile Include="ViewModels\WeeklyScoreDisplayModel.cs" />
+    <Compile Include="ViewModels\WeeklyUnitScoreDisplayModel.cs" />
+    <Compile Include="ViewModels\WeeklyViewModel.cs" />
+    <Compile Include="Views\AddEditRewardDialog.xaml.cs">
+      <DependentUpon>AddEditRewardDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdminView.xaml.cs">
+      <DependentUpon>AdminView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DecisionEditorDialog.xaml.cs">
+      <DependentUpon>DecisionEditorDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DecisionView.xaml.cs">
+      <DependentUpon>DecisionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DocumentProposalView.xaml.cs">
+      <DependentUpon>DocumentProposalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HometownDialog.xaml.cs">
+      <DependentUpon>HometownDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HomeView.xaml.cs">
+      <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IntroConfigDialog.xaml.cs">
+      <DependentUpon>IntroConfigDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OrgUnitDialog.xaml.cs">
+      <DependentUpon>OrgUnitDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PositionDialog.xaml.cs">
+      <DependentUpon>PositionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReportStatisticView.xaml.cs">
+      <DependentUpon>ReportStatisticView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RewardFormDialog.xaml.cs">
+      <DependentUpon>RewardFormDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ViolationEntryWindow.xaml.cs">
+      <DependentUpon>ViolationEntryWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WeeklyView.xaml.cs">
+      <DependentUpon>WeeklyView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="HomeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HomeWindow.xaml.cs">
+      <DependentUpon>HomeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="StartupSplashWindow.xaml.cs">
+      <DependentUpon>StartupSplashWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="StartupSplashWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AddEditRewardDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AdminView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DecisionEditorDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DecisionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DocumentProposalView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\HometownDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\HomeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\IntroConfigDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OrgUnitDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PositionDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ReportStatisticView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RewardFormDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ViolationEntryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WeeklyView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\DevExpress.Mvvm.CodeGenerators.22.1.1\analyzers\dotnet\cs\DevExpress.Mvvm.CodeGenerators.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\10.jpg" />
+    <Resource Include="Images\administrator.png" />
+    <Resource Include="Images\home-page.png" />
+    <Resource Include="Images\logout.png" />
+    <Resource Include="Images\quyetdinh.png" />
+    <Resource Include="Images\statistics.png" />
+    <Resource Include="Images\vanban.png" />
+    <Resource Include="Images\write.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TD_KT.Updater\TD_KT.Updater.csproj">
+      <Project>{A3E9CC5C-2B72-4F49-A1A6-8C5EB73B7F11}</Project>
+      <Name>TD_KT.Updater</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="CopyUpdaterToOutput" AfterTargets="Build">
+    <Copy SourceFiles="..\TD_KT.Updater\bin\$(Configuration)\TD_KT.Updater.exe"
+          DestinationFolder="$(TargetDir)"
+          SkipUnchangedFiles="true"
+          Condition="Exists('..\TD_KT.Updater\bin\$(Configuration)\TD_KT.Updater.exe')" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

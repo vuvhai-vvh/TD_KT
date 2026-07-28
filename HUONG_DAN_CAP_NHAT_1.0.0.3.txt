@@ -1,0 +1,37 @@
+﻿TD_KT 1.0.0.3 - LƯU TOÀN BỘ FILE TRỰC TIẾP TRONG CSDL
+
+Đã cập nhật 3 cột FileData:
+- dbo.DocumentProposals.FileData
+- dbo.UnitDocumentProposals.FileData
+- dbo.DecisionAttachments.FileData
+
+Luồng mới:
+- Tải lên: đọc file thành byte[] và ghi vào FileData VARBINARY(MAX).
+- Mở xem: đọc FileData, tạo file tạm và mở bằng ứng dụng mặc định.
+- Tải xuống: đọc FileData và ghi ra vị trí người dùng chọn.
+- Xóa: xóa bản ghi nên nội dung FileData cũng bị xóa khỏi CSDL.
+
+Tương thích dữ liệu cũ:
+- Giữ FilePath để đọc file cũ.
+- Khi chương trình chạy trên máy còn giữ file cũ, nội dung được tự chuyển vào FileData.
+- File mới không được sao chép vào Files\DocumentProposals,
+  Files\UnitDocumentProposals hoặc Files\DecisionAttachments.
+
+Build:
+1. Mở TD_KT.sln.
+2. Chọn Release | x86.
+3. Build > Rebuild Solution.
+4. Kiểm tra tải file trên máy A và mở/tải xuống trên máy B.
+
+Kiểm tra CSDL sau khi tải thử:
+SELECT Id, FileName, DATALENGTH(FileData) AS FileBytes
+FROM dbo.DocumentProposals
+ORDER BY Id DESC;
+
+SELECT Id, FileName, DATALENGTH(FileData) AS FileBytes
+FROM dbo.UnitDocumentProposals
+ORDER BY Id DESC;
+
+SELECT Id, FileName, DATALENGTH(FileData) AS FileBytes
+FROM dbo.DecisionAttachments
+ORDER BY Id DESC;

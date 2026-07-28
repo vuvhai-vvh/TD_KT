@@ -1,0 +1,75 @@
+HƯỚNG DẪN TRIỂN KHAI TỰ ĐỘNG CẬP NHẬT TD-KT
+================================================
+
+1. CẤU HÌNH MỘT LẦN
+
+Mở file App.config trong dự án TD_KT, sửa dòng:
+
+  AutoUpdate.ManifestPath = \\MAYCHU\TDKT_Update\manifest.json
+
+thành tên máy chủ và thư mục chia sẻ thực tế.
+Ví dụ:
+
+  \\SERVER01\TDKT_Update\manifest.json
+
+Tất cả máy trạm phải có quyền đọc thư mục chia sẻ này.
+
+Nếu phần mềm được cài trong C:\Program Files và cần quyền quản trị để ghi đè,
+đổi AutoUpdate.RequireAdministrator thành true.
+
+2. BUILD BẢN PHÁT HÀNH
+
+Trong Visual Studio:
+
+  - Chọn Release | x86.
+  - Build > Rebuild Solution.
+  - Kiểm tra thư mục TD_KT\bin\Release có cả:
+      TD_KT.exe
+      TD_KT.Updater.exe
+
+3. TẠO VÀ ĐƯA BẢN CẬP NHẬT LÊN MÁY CHỦ
+
+Mở PowerShell tại thư mục Deployment\AutoUpdate rồi chạy:
+
+  .\Create-UpdatePackage.ps1 `
+      -ServerFolder "\\SERVER01\TDKT_Update" `
+      -Description "Sửa lỗi và bổ sung chức năng" `
+      -Mandatory $true
+
+Script tự động:
+
+  - Đọc phiên bản từ TD_KT.exe.
+  - Tạo file ZIP, không cần WinRAR.
+  - Tính SHA-256.
+  - Tạo manifest.json.
+  - Chép cả hai file vào thư mục máy chủ.
+
+4. TĂNG PHIÊN BẢN MỖI LẦN PHÁT HÀNH
+
+Sửa trong TD_KT\Properties\AssemblyInfo.cs:
+
+  AssemblyVersion
+  AssemblyFileVersion
+
+Ví dụ từ 1.0.0.1 lên 1.0.0.2, sau đó Rebuild Solution và chạy lại script.
+
+5. CƠ CHẾ HOẠT ĐỘNG
+
+Khi mở TD_KT.exe, máy trạm đọc manifest.json trên máy chủ.
+Nếu phiên bản máy chủ lớn hơn phiên bản trên máy trạm:
+
+  - Gói ZIP được chép về thư mục tạm.
+  - TD_KT.Updater.exe được chạy từ thư mục tạm.
+  - Phần mềm chính đóng lại.
+  - Updater sao lưu file cũ, kiểm tra SHA-256, cập nhật file mới.
+  - Nếu có lỗi, Updater cố gắng khôi phục file cũ.
+  - Sau khi hoàn tất, phần mềm tự mở lại.
+
+Các mục sau được giữ nguyên, không bị ghi đè:
+
+  Files
+  Logs
+  Backup
+  TD_KT.exe.config
+
+Không có thay đổi nào trong cơ sở dữ liệu cho chức năng tự cập nhật này.

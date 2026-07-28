@@ -1,0 +1,175 @@
+﻿<Window x:Class="TD_KT.Views.DecisionEditorDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Thêm/Sửa/Xóa quyết định"
+        Width="710"
+        Height="770"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent">
+    <Window.Resources>
+        <Style x:Key="LabelStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#374151"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Margin" Value="0,0,0,6"/>
+        </Style>
+
+        <Style x:Key="InputTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Padding" Value="12,0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E2E8F0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="#1F2937"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8"
+                                Padding="{TemplateBinding Padding}">
+                            <ScrollViewer x:Name="PART_ContentHost"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="#94A3B8"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="#3B82F6"/>
+                                <Setter TargetName="border" Property="BorderThickness" Value="2"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="InputComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E2E8F0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+
+        <Style x:Key="InputDatePickerStyle" TargetType="DatePicker">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E2E8F0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+    </Window.Resources>
+
+    <Border Background="White" CornerRadius="16" Margin="12">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="24" ShadowDepth="0" Opacity="0.16" Color="#1E293B"/>
+        </Border.Effect>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="58"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="74"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0" Background="#FA8072" CornerRadius="16,16,0,0" MouseLeftButtonDown="Header_MouseLeftButtonDown">
+                <Grid Margin="20,0">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Border Background="#FA8072" CornerRadius="8" Padding="8,5" Margin="0,0,10,0">
+                            <TextBlock Text="📜" Foreground="White" FontSize="13"/>
+                        </Border>
+                        <TextBlock x:Name="txtDialogTitle" Foreground="White" FontWeight="Bold" FontSize="15"/>
+                    </StackPanel>
+
+                    <Button Content="✕"
+                            Width="30"
+                            Height="30"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Click="Cancel_Click"
+                            Background="Transparent"
+                            Foreground="White"
+                            BorderThickness="0"
+                            FontSize="13"
+                            Cursor="Hand"/>
+                </Grid>
+            </Border>
+
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="24,20,24,8">
+                <StackPanel>
+                    <TextBlock Text="Số quyết định *" Style="{StaticResource LabelStyle}"/>
+                    <TextBox x:Name="txtDecisionNumber" Style="{StaticResource InputTextBoxStyle}" Margin="0,0,0,14"/>
+
+                    <TextBlock Text="Cấp khen thưởng *" Style="{StaticResource LabelStyle}"/>
+                    <ComboBox x:Name="cboIssuingLevel" Style="{StaticResource InputComboBoxStyle}" DisplayMemberPath="Name" Margin="0,0,0,14"/>
+
+                    <TextBlock Text="Người ký" Style="{StaticResource LabelStyle}"/>
+                    <TextBox x:Name="txtSigner" Style="{StaticResource InputTextBoxStyle}" Margin="0,0,0,14"/>
+
+                    <TextBlock Text="Ngày ký" Style="{StaticResource LabelStyle}"/>
+                    <DatePicker x:Name="dpSignedDate" Style="{StaticResource InputDatePickerStyle}" Margin="0,0,0,14"/>
+
+                    <TextBlock Text="Ghi chú" Style="{StaticResource LabelStyle}"/>
+                    <TextBox x:Name="txtNote"
+                             Style="{StaticResource InputTextBoxStyle}"
+                             Height="88"
+                             Padding="12,10"
+                             AcceptsReturn="True"
+                             TextWrapping="Wrap"
+                             VerticalContentAlignment="Top"/>
+                </StackPanel>
+            </ScrollViewer>
+
+            <Border Grid.Row="2" Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="0,1,0,0" CornerRadius="0,0,16,16">
+                <Grid Margin="24,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="btnDelete"
+                            Grid.Column="0"
+                            Width="120"
+                            Height="40"
+                            HorizontalAlignment="Left"
+                            Content="🗑 Xóa"
+                            Click="Delete_Click"
+                            Background="#EF4444"
+                            Foreground="White"
+                            BorderThickness="0"
+                            FontWeight="SemiBold"/>
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Width="110"
+                                Height="40"
+                                Margin="0,0,12,0"
+                                Content="Hủy"
+                                Click="Cancel_Click"
+                                Background="#E2E8F0"
+                                Foreground="#334155"
+                                BorderThickness="0"
+                                FontWeight="SemiBold"/>
+
+                        <Button Width="110"
+                                Height="40"
+                                Content="Lưu"
+                                Click="Save_Click"
+                                Background="#3B82F6"
+                                Foreground="White"
+                                BorderThickness="0"
+                                FontWeight="SemiBold"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
+</Window>

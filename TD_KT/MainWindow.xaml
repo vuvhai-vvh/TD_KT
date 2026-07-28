@@ -1,0 +1,184 @@
+﻿<Window
+    x:Class="TD_KT.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Đăng nhập - Hệ thống Thi đua Khen thưởng"
+    WindowStartupLocation="CenterScreen"
+    ResizeMode="NoResize"
+    Width="850"
+    Height="520"
+    WindowStyle="None"
+    AllowsTransparency="True"
+    Background="Transparent">
+
+    <!-- Nền hồng nhạt bao ngoài -->
+    <Border Background="#FCDAD5" CornerRadius="20" Margin="15">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="25" ShadowDepth="0" Opacity="0.25" Color="#E54646"/>
+        </Border.Effect>
+
+        <Grid Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70*"/>
+                <ColumnDefinition Width="201*"/>
+                <ColumnDefinition Width="370*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Bên trái: Ảnh Bác Hồ -->
+            <Border Grid.Column="0" 
+                    CornerRadius="15" 
+                    Margin="0,0,10,0"
+                    ClipToBounds="True" Grid.ColumnSpan="2">
+                <Border.Background>
+                    <ImageBrush ImageSource="/Images/10.jpg" Stretch="UniformToFill"/>
+                </Border.Background>
+            </Border>
+
+            <!-- Bên phải: Form đăng nhập -->
+            <Border Grid.Column="2" 
+                    Background="White" 
+                    CornerRadius="15" 
+                    Padding="35,25"
+                    Margin="10,0,0,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Nút đóng -->
+                    <Button Grid.Row="0"
+                            Content="✕"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Width="32"
+                            Height="32"
+                            Background="Transparent"
+                            Foreground="#E54646"
+                            BorderThickness="0"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Cursor="Hand"
+                            Click="BtnClose_Click"
+                            Margin="0,-5,-10,0">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="border" Background="Transparent" CornerRadius="8">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="border" Property="Background" Value="#FCDAD5"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <!-- Form -->
+                    <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                        <!-- Tiêu đề -->
+                        <TextBlock Text="Đăng nhập"
+                                   Foreground="#1f2937"
+                                   FontSize="28"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,0,0,30"/>
+
+                        <!-- Tên đăng nhập -->
+                        <TextBlock Text="Tên đăng nhập"
+                                   Foreground="#374151"
+                                   FontSize="13"
+                                   FontWeight="SemiBold"
+                                   Margin="0,0,0,8"/>
+                        <Border BorderBrush="#E54646" BorderThickness="0,0,0,2" Margin="0,0,0,25">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="👤" FontSize="16" VerticalAlignment="Center" Margin="0,0,10,0" Opacity="0.6"/>
+                                <TextBox Grid.Column="1"
+                                         x:Name="txtUsername"
+                                         Height="38"
+                                         BorderThickness="0"
+                                         VerticalContentAlignment="Center"
+                                         FontSize="14"
+                                         Background="Transparent"/>
+                            </Grid>
+                        </Border>
+
+                        <!-- Mật khẩu -->
+                        <TextBlock Text="Mật khẩu"
+                                   Foreground="#374151"
+                                   FontSize="13"
+                                   FontWeight="SemiBold"
+                                   Margin="0,0,0,8"/>
+                        <Border BorderBrush="#E54646" BorderThickness="0,0,0,2" Margin="0,0,0,20">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="🔒" FontSize="16" VerticalAlignment="Center" Margin="0,0,10,0" Opacity="0.6"/>
+                                <PasswordBox Grid.Column="1"
+                                             x:Name="txtPassword"
+                                             Height="38"
+                                             BorderThickness="0"
+                                             VerticalContentAlignment="Center"
+                                             FontSize="14"
+                                             Background="Transparent"/>
+                            </Grid>
+                        </Border>
+
+                        <!-- Ghi nhớ đăng nhập -->
+                        <CheckBox x:Name="chkRemember"
+                                  Content="Ghi nhớ đăng nhập"
+                                  Foreground="#374151"
+                                  FontSize="13"
+                                  Margin="0,0,0,25"
+                                  Cursor="Hand"/>
+
+                        <!-- Nút đăng nhập -->
+                        <Button Content="Đăng nhập"
+                                Height="48"
+                                Background="#E54646"
+                                Foreground="White"
+                                FontSize="16"
+                                FontWeight="SemiBold"
+                                BorderThickness="0"
+                                Cursor="Hand"
+                                Click="BtnLogin_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="border" 
+                                            Background="{TemplateBinding Background}" 
+                                            CornerRadius="25">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="border" Property="Background" Value="#c73a3a"/>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter TargetName="border" Property="Background" Value="#a82e2e"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+
+                    <!-- Footer -->
+                    <TextBlock Grid.Row="2"
+                               Text="© Trung tâm TSKT 47 - Bộ Tham mưu - Quân chủng Hải quân"
+                               Foreground="#9ca3af"
+                               FontSize="11"
+                               HorizontalAlignment="Center"
+                               Margin="0,15,0,0"/>
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
+</Window>

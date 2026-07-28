@@ -1,0 +1,29 @@
+TD_KT 1.0.0.4 - LƯU FILE VĂN BẢN TRỰC TIẾP TRONG SQL SERVER
+
+1. Phạm vi thay đổi
+- Tab "Văn bản, hướng dẫn của trên".
+- Tab "Văn bản đề nghị của đơn vị".
+- Không thay đổi giao diện và các nghiệp vụ khác.
+
+2. Cấu trúc CSDL được bổ sung
+- dbo.DocumentProposals.FileData VARBINARY(MAX) NULL
+- dbo.UnitDocumentProposals.FileData VARBINARY(MAX) NULL
+
+Phần mềm tự kiểm tra và thêm hai cột khi mở chức năng Văn bản, Hồ sơ khen thưởng.
+Có thể chạy thủ công file Update_1.0.0.4_Store_Documents_In_Database.sql trước khi phát hành.
+
+3. Cách hoạt động
+- File tải lên mới được đọc thành dữ liệu nhị phân và lưu vào SQL Server.
+- File không còn được copy vào thư mục Files trên máy trạm.
+- Khi mở xem, phần mềm lấy dữ liệu từ CSDL, tạo file tạm và mở bằng ứng dụng mặc định.
+- Khi tải xuống, phần mềm lấy dữ liệu từ CSDL và ghi vào nơi người dùng chọn.
+
+4. Dữ liệu cũ
+- FilePath vẫn được giữ để tương thích.
+- Khi máy có file cũ mở phiên bản mới, phần mềm tự đưa file đó vào FileData trong CSDL.
+- Nếu file cũ nằm ở máy khác, cần chạy phiên bản mới trên đúng máy đang giữ file để tự chuyển.
+- Sau khi xác nhận tất cả file cũ đã mở được từ máy khác, có thể sao lưu rồi dọn thư mục Files cũ.
+
+5. Lưu ý
+- SQL Server Express có giới hạn dung lượng CSDL; cần theo dõi kích thước database khi lưu nhiều file lớn.
+- Nên sao lưu TDKT.bak trước khi triển khai phiên bản này.

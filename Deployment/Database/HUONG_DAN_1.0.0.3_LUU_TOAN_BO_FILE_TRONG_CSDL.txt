@@ -1,0 +1,20 @@
+﻿TD_KT 1.0.0.3 - LƯU TOÀN BỘ FILE TRỰC TIẾP TRONG SQL SERVER
+
+Ba bảng sử dụng cột FileData VARBINARY(MAX):
+1. dbo.DocumentProposals       - Văn bản, hướng dẫn của cấp trên
+2. dbo.UnitDocumentProposals   - Văn bản đề nghị của đơn vị
+3. dbo.DecisionAttachments     - File đính kèm quyết định khen thưởng
+
+CSDL:
+- Chạy Update_1.0.0.3_Store_All_Attachments_In_Database.sql bằng SSMS.
+- Không xóa FilePath vì cần đọc và chuyển các file cũ.
+
+Mã nguồn:
+- File tải lên mới được đọc thành byte[] và ghi vào FileData.
+- Mở xem/tải xuống đọc FileData từ SQL Server.
+- Nếu FileData còn NULL, phần mềm tiếp tục đọc FilePath cũ.
+- Khi phần mềm chạy trên máy còn giữ file cũ, file được tự chuyển vào FileData.
+
+Build:
+- Visual Studio: Release | x86
+- Build > Rebuild Solution
